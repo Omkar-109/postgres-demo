@@ -1,0 +1,19 @@
+<%- include("partials/header.ejs") %>
+
+    <main>
+        <h1>Home Page</h1>
+        <p>Student details</p>
+
+        <% if (locals.data) { %>
+        <table border="1">
+            <tr>
+                <td><%= data.name %></td>
+                <td><%= data.rollno %></td>
+            </tr>
+        </table>
+        <% } else { %>
+            <p>No students in database</p>
+        <% } %>
+    </main>
+
+<%- include("partials/footer.ejs") %>

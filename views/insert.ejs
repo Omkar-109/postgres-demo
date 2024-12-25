@@ -1,18 +1,16 @@
 <%- include("partials/header.ejs") %>
 
-    <main>
-        <h1>Enter Student</h1>
+    <main class="enter-form">
+        <h1>Enter Student Details</h1>
 
         <% if (error) { %>
             <p style="color: red;"><%= error %></p>
         <% } %>
 
-        <form action="/addstudent" method="post">
-            <input type="text" name="name" placeholder="Enter Student name">
-            <br>
-            <input type="text" name="rollno" placeholder="Enter roll no">
-            <br>
-            <input type="submit">
+        <form class="form " action="/addstudent" method="post">
+            <input class="mb-1 form-control" type="text" name="name" placeholder="Enter Student name">
+            <input class="mb-2 form-control" type="text" name="rollno" placeholder="Enter roll no">
+            <input class="mb-1 btn btn-primary" type="submit">
         </form>
     </main>
 

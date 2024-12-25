@@ -1,0 +1,19 @@
+<%- include("partials/header.ejs") %>
+
+    <main>
+        <h1>Enter Student</h1>
+
+        <% if (error) { %>
+            <p style="color: red;"><%= error %></p>
+        <% } %>
+
+        <form action="/addstudent" method="post">
+            <input type="text" name="name" placeholder="Enter Student name">
+            <br>
+            <input type="text" name="rollno" placeholder="Enter roll no">
+            <br>
+            <input type="submit">
+        </form>
+    </main>
+
+<%- include("partials/footer.ejs") %>

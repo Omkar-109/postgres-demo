@@ -7,9 +7,6 @@ body{
 #header-section{
   margin: 10px;
   border-radius: 5px;
-  padding: 5px;
-  padding: 10px;
-  width: 100%;
   background-color: aquamarine;
 }
 footer{
@@ -21,10 +18,10 @@ footer{
   color: blanchedalmond
 }
 main{
-  background-color: aliceblue;
+  background-color: rgba(240, 248, 255, 0.85);
   margin: 10px;
   border-radius: 5px;
-  padding: 5px;
+  padding: 25px;
 }
 
 table{

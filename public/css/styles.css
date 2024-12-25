@@ -7,30 +7,19 @@
 */
 
 
-body{
-  background-image: url("\\images\\college-back.png");
-  background-size:cover;
-  background-repeat: no-repeat;
-}
-
 #header-section{
   margin: 10px;
   border-radius: 5px;
   background-color: #F8F0E5;
 }
-footer{
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: rgba(219, 24, 24, 0);
-  color: #F8F0E5
-}
+
 main{
+ 
   background-color: rgba(240, 248, 255, 0.85);
   margin: 10px;
   border-radius: 5px;
   padding: 25px;
+
 }
 
 table{
@@ -73,50 +62,49 @@ body {
   }
 }
 
+footer {
+  position: relative;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0);
+  color: #F8F0E5;
+  overflow: hidden; 
+  padding-top: 50px; 
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
 .wave {
-  background: rgb(255 255 255 / 25%);
-  border-radius: 1000% 1000% 0 0;
-  position: fixed;
+  position: absolute;
+  bottom: 0;
   width: 200%;
   height: 12em;
-  animation: wave 10s -3s linear infinite;
+  background: rgb(255 255 255 / 25%);
+  border-radius: 1000% 1000% 0 0;
+  animation: wave 10s linear infinite;
   transform: translate3d(0, 0, 0);
   opacity: 0.8;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
+  z-index: -1; /* Ensure waves are behind text */
 }
 
 .wave:nth-of-type(2) {
-  bottom: -1.25em;
   animation: wave 18s linear reverse infinite;
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .wave:nth-of-type(3) {
-  bottom: -2.5em;
   animation: wave 20s -1s reverse infinite;
-  opacity: 0.9;
+  opacity: 0.4;
 }
 
 @keyframes wave {
-  2% {
-      transform: translateX(1);
+  0% {
+    transform: translateX(0%);
   }
-
-  25% {
-      transform: translateX(-25%);
-  }
-
   50% {
-      transform: translateX(-50%);
+    transform: translateX(-50%);
   }
-
-  75% {
-      transform: translateX(-25%);
-  }
-
   100% {
-      transform: translateX(1);
+    transform: translateX(0%);
   }
 }

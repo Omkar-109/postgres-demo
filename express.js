@@ -25,7 +25,7 @@ app.get('/', async (request, response) => {
     //fetch database
     try {
         const result = await db.query('SELECT * FROM studentinfo');
-        console.log(result.rows)
+        //console.log(result.rows)
         response.render("home.ejs",{students : result.rows})  
       } catch (err) {
         console.error(err.message);
@@ -59,6 +59,28 @@ app.post('/addstudent', async (request, response) => {
         console.error(err)
     } 
      
+})
+
+app.get('/delete', (request, response) => {
+     response.render("delete.ejs")
+})
+
+app.post('/remove', async (request, response) => {
+     console.log(request.body)
+     const { searchPara, name, rollno } = request.body
+     console.log(searchPara)
+     try{
+            if(searchPara === "rollno"){
+                
+            }
+            if(searchPara === "name"){
+               
+            }
+     }catch(error){
+
+     }
+     
+     response.redirect("/")
 })
 
 // Gracefully close the database connection on app termination

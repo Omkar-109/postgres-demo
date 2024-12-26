@@ -24,7 +24,7 @@ db.connect();
 app.get('/', async (request, response) => {
     //fetch database
     try {
-        const result = await db.query('SELECT * FROM studentinfo');
+        const result = await db.query(`SELECT * FROM ${process.env.TABLE_NAME}`);
         //console.log(result.rows)
         response.render("home.ejs",{students : result.rows})  
       } catch (err) {
@@ -44,13 +44,13 @@ app.post('/addstudent', async (request, response) => {
     try{
 
         //checking if rollno already exists
-        const checkResult = await db.query('SELECT * FROM studentinfo WHERE rollno = $1', [rollno]);
+        const checkResult = await db.query(`SELECT * FROM ${process.env.TABLE_NAME} WHERE rollno = $1`, [rollno]);
         if (checkResult.rows.length > 0) {
             // Roll number already exists
             return response.render('insert.ejs', { error: "Roll number already exists!" });
         }
 
-        const result=await db.query('INSERT INTO studentinfo (rollno, s_name) VALUES ($1, $2) RETURNING *',
+        const result=await db.query(`INSERT INTO ${process.env.TABLE_NAME} (rollno, s_name) VALUES ($1, $2) RETURNING *`,
             [rollno, name]);
         console.log(result)
         response.redirect("/")
@@ -62,7 +62,7 @@ app.post('/addstudent', async (request, response) => {
 })
 
 app.get('/delete', (request, response) => {
-     response.render("delete.ejs")
+     response.render("delete.ejs",{error:null})
 })
 
 app.post('/remove', async (request, response) => {
@@ -70,17 +70,36 @@ app.post('/remove', async (request, response) => {
      const { searchPara, name, rollno } = request.body
      console.log(searchPara)
      try{
-            if(searchPara === "rollno"){
+        if(searchPara === "rollno"){
+            //checking if rolln exists
+            const checkResult = await db.query(`SELECT * FROM ${process.env.TABLE_NAME} WHERE rollno = $1`, [rollno]);
+            if (checkResult.rows.length > 0) {
+                // Roll number exists
+
                 
             }
-            if(searchPara === "name"){
-               
+            else{
+                return response.render('delete.ejs', { error: "Roll number does not exists!" });
             }
+        }
+        if(searchPara === "name"){
+            //checking if name exists
+            const checkResult = await db.query(`SELECT * FROM ${process.env.TABLE_NAME} WHERE s_name = $1`, [name]);
+            if (checkResult.rows.length > 0) {
+                // name exists
+                
+
+            }
+            else{
+                return response.render('delete.ejs', { error: "Name does not exists!" });
+            }
+        }
+        response.redirect("/")
      }catch(error){
 
      }
      
-     response.redirect("/")
+     
 })
 
 // Gracefully close the database connection on app termination

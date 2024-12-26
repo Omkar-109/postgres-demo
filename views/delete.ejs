@@ -1,6 +1,9 @@
 <%- include("partials/header.ejs") %>
     <main class="detele-section">
         <h1>Remove a Student</h1>
+        <% if (error) { %>
+            <p style="color: red;"><%= error %></p>
+        <% } %>
         <form class="form mb-2" action="/remove" method="post">
             <fieldset>
             <legend>Search student by:</legend>
@@ -17,9 +20,9 @@
                 </label>
             </div>
         </fieldset>
-            <label>Only enter the field chosen in above radio button</label>
-            <input class="mb-1 form-control" type="text" name="name" placeholder="Enter Student name">
+            <label>Only enter the field selected in above radio button</label>
             <input class="mb-2 form-control" type="text" name="rollno" placeholder="Enter roll no">
+            <input class="mb-1 form-control" type="text" name="name" placeholder="Enter Student name">
             <input class="mb-1 btn btn-primary" type="submit">
         </form>
     </main>

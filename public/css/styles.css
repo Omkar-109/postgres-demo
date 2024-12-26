@@ -70,6 +70,19 @@ body {
       background-position: 0% 0%;
   }
 }
+/* Add these styles */
+ html ,body{
+  height: 100%;
+  margin: 0;    /* Remove default margin */
+  overflow: auto;
+}
+
+body {
+  display: block;
+
+  
+}
+
 
 footer {
   position: relative;
@@ -81,6 +94,7 @@ footer {
   text-align: center;
   margin: 0;
   padding: 0;
+  z-index: 1;
 }
 
 .wave {
@@ -132,4 +146,69 @@ footer {
   border-style:solid;
   border-color: #FF9B50;
   background-color: #ffffff;
+}
+
+
+html, body {
+  height: 100%; /* Full height for the viewport */
+  margin: 0;    /* Remove default margin */
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+body {
+  display: flex; 
+  flex-direction: column;
+  
+}
+
+#header-section {
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #F8F0E5;
+}
+
+main {
+  background-color: rgba(240, 248, 255, 0.85);
+  margin: 10px;
+  border-radius: 5px;
+  padding: 25px;
+  flex: 1;
+}
+
+footer {
+  margin-top: 100px;
+  position: relative; 
+  width: 100%;
+  
+  background-color: rgba(255, 255, 255, 0.194);
+  color: #F8F0E5;
+  overflow: hidden; 
+  text-align: center;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  z-index: 1; 
+  
+}
+
+.wave {
+  position: absolute;
+  bottom: 0;
+  width: 200%;
+  height: 12em;
+  background: rgb(255 255 255 / 25%);
+  border-radius: 1000% 1000% 0 0;
+  animation: wave 10s linear infinite;
+  transform: translate3d(0, 0, 0);
+  opacity: 0.8;
+  z-index: -1; /* Ensure waves are behind text */
+}
+
+.wave:nth-of-type(2) {
+  animation: wave 18s linear reverse infinite;
+  opacity: 0.6;
+}
+
+.wave:nth-of-type(3) {
+  animation: wave 20s -1s reverse infinite;
+  opacity: 0.4;
 }

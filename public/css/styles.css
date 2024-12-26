@@ -39,6 +39,15 @@ th, td {
   width: 300px;
 }
 
+.navbar-brand{
+  font-size: large;
+  border-color: #FFBB5C;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
 /* animations */
 body {
   margin: auto;
@@ -107,4 +116,20 @@ footer {
   100% {
     transform: translateX(0%);
   }
+}
+
+.nav-link{
+  margin: 2px;
+  border-radius: 5px;
+  border-color: #FFBB5C;
+  border-style:solid;
+  border-top: none;
+  border-left: none;
+  border-width: 2px;
+
+}
+.nav-link:hover{
+  border-style:solid;
+  border-color: #FF9B50;
+  background-color: #ffffff;
 }

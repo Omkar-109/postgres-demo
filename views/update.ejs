@@ -1,0 +1,14 @@
+<%- include("partials/header.ejs") %>
+    <main>
+        <h1>Update Student Name</h1>
+        <% if (error) { %>
+            <p style="color: red;"><%= error %></p>
+        <% } %>
+        <form class="form mb-2" action="/editstudent" method="post">
+            <label>Search Student by roll number</label>
+            <input class="mb-3 form-control" type="text" name="rollno" placeholder="Enter Roll No" required>
+            <input class="mb-1 form-control" type="text" name="newname" placeholder="Enter New Name" required>
+            <input class="mb-1 btn btn-primary" type="submit">
+        </form>
+    </main>
+<%- include("partials/footer.ejs") %>

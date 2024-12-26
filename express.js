@@ -75,6 +75,7 @@ app.post('/remove', async (request, response) => {
      const { searchPara, name, rollno } = request.body
      console.log(searchPara)
      try{
+        //if radio is rollno
         if(searchPara === "rollno"){
             //checking if rollno exists
             const checkResult = await db.query(
@@ -91,6 +92,7 @@ app.post('/remove', async (request, response) => {
                 return response.render('delete.ejs', { error: "Roll number does not exists!" });
             }
         }
+        //if radio is name
         if(searchPara === "name"){
             //checking if name exists
             const checkResult = await db.query(
@@ -107,11 +109,40 @@ app.post('/remove', async (request, response) => {
                 return response.render('delete.ejs', { error: "Name does not exists!" });
             }
         }
-        response.redirect("/")
-     }catch(error){
+        
+     }catch(err){
+        console.error(err)
+     }  
+})
 
+app.get('/update', (request, response) => {
+     response.render("update.ejs",{error:null})
+})
+
+app.post('/editstudent', async (request, response) => {
+     console.log(request.body)
+     const {rollno,newname} = request.body
+     console.log(newname)
+     try{
+        //checking if rollno exists
+        const checkResult = await db.query(
+            `SELECT * FROM ${process.env.TABLE_NAME} 
+            WHERE ${process.env.ROLLNO_COLUMN} = $1`, [rollno]);
+        if (checkResult.rows.length > 0) {
+            // Roll number exists
+            const result=await db.query(`UPDATE ${process.env.TABLE_NAME} 
+                SET ${process.env.NAME_COLUMN} = $1 
+                WHERE ${process.env.ROLLNO_COLUMN} = $2`,[newname,rollno])
+            console.log(result.rowCount)
+            response.redirect("/")
+        }
+        else{
+            return response.render('update.ejs', { error: "Roll number does not exists!" });
+        }
+       
+     }catch(err){
+        console.error(err)
      }
-     
      
 })
 

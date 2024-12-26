@@ -24,7 +24,7 @@ db.connect();
 app.get('/', async (request, response) => {
     //fetch database
     try {
-        const result = await db.query(`SELECT * FROM ${process.env.TABLE_NAME}`);
+        const result = await db.query(`SELECT * FROM ${process.env.TABLE_NAME} ORDER by ${process.env.ROLLNO_COLUMN}`);
         //console.log(result.rows)
         response.render("home.ejs",{students : result.rows})  
       } catch (err) {
@@ -44,13 +44,18 @@ app.post('/addstudent', async (request, response) => {
     try{
 
         //checking if rollno already exists
-        const checkResult = await db.query(`SELECT * FROM ${process.env.TABLE_NAME} WHERE rollno = $1`, [rollno]);
+        const checkResult = await db.query(
+            `SELECT * FROM ${process.env.TABLE_NAME} 
+            WHERE ${process.env.ROLLNO_COLUMN} = $1`, [rollno]);
         if (checkResult.rows.length > 0) {
             // Roll number already exists
             return response.render('insert.ejs', { error: "Roll number already exists!" });
         }
 
-        const result=await db.query(`INSERT INTO ${process.env.TABLE_NAME} (rollno, s_name) VALUES ($1, $2) RETURNING *`,
+        const result=await db.query(
+            `INSERT INTO ${process.env.TABLE_NAME} (${process.env.ROLLNO_COLUMN}, ${process.env.NAME_COLUMN}) 
+            VALUES ($1, $2) 
+            RETURNING *`,
             [rollno, name]);
         console.log(result)
         response.redirect("/")
@@ -71,12 +76,16 @@ app.post('/remove', async (request, response) => {
      console.log(searchPara)
      try{
         if(searchPara === "rollno"){
-            //checking if rolln exists
-            const checkResult = await db.query(`SELECT * FROM ${process.env.TABLE_NAME} WHERE rollno = $1`, [rollno]);
+            //checking if rollno exists
+            const checkResult = await db.query(
+                `SELECT * FROM ${process.env.TABLE_NAME} 
+                WHERE ${process.env.ROLLNO_COLUMN} = $1`, [rollno]);
             if (checkResult.rows.length > 0) {
                 // Roll number exists
-
-                
+                const result=await db.query(`DELETE FROM ${process.env.TABLE_NAME} 
+                    WHERE ${process.env.ROLLNO_COLUMN} = $1`,[rollno])
+                console.log(result.rowCount)
+                response.redirect("/")
             }
             else{
                 return response.render('delete.ejs', { error: "Roll number does not exists!" });
@@ -84,11 +93,15 @@ app.post('/remove', async (request, response) => {
         }
         if(searchPara === "name"){
             //checking if name exists
-            const checkResult = await db.query(`SELECT * FROM ${process.env.TABLE_NAME} WHERE s_name = $1`, [name]);
+            const checkResult = await db.query(
+                `SELECT * FROM ${process.env.TABLE_NAME} 
+                WHERE ${process.env.NAME_COLUMN} = $1`, [name]);
             if (checkResult.rows.length > 0) {
                 // name exists
-                
-
+                const result=await db.query(`DELETE FROM ${process.env.TABLE_NAME} 
+                    WHERE ${process.env.NAME_COLUMN} = $1`,[name])
+                console.log(result.rowCount)
+                response.redirect("/")
             }
             else{
                 return response.render('delete.ejs', { error: "Name does not exists!" });

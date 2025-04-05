@@ -4,10 +4,11 @@
         <% if (error) { %>
             <p style="color: red;"><%= error %></p>
         <% } %>
-        <form class="form mb-2" action="/editstudent" method="post">
+        <form class="form mb-2" action="/students/editstudent" method="post">
             <label>Search Student by roll number</label>
-            <input class="mb-3 form-control" type="text" name="rollno" placeholder="Enter Roll No" required>
+            <input class="mb-3 form-control" type="number" name="rollno" placeholder="Enter Roll No" required>
             <input class="mb-1 form-control" type="text" name="newname" placeholder="Enter New Name" required>
+            <input class="mb-3 form-control" type="number" name="new_graduation_percentage" placeholder="Enter graduation percentage" required>
             <input class="mb-1 btn btn-primary" type="submit">
         </form>
     </main>

@@ -2,7 +2,8 @@
 
     <main>
         <h1 class="title">Home Page</h1>
-
+<div class="main-card">
+    <div class="list-card">
         <p class="sub-title">Student details</p>
 
         <% if (students && students.length > 0) { %>
@@ -10,18 +11,45 @@
             <tr>
                 <th>Roll No</th>
                 <th>Name</th>
+                <th>Graduation Percentage </th>
             </tr>
             <% students.forEach(student => { %>
                 <tr>
                     <td><%= student.rollno %></td>
                     <td><%= student.s_name %></td>
-                    <td><%= student.graduation_percentage %></td>
+                    <td><%= student.graduation_percentage %> %</td>
                 </tr>
             <% }); %>
         </table>
         <% } else { %>
             <p>No students in database</p>
         <% } %>
+    </div>
+    <div class="list-card">
+        <p class="sub-title">Course details</p>
+        <% if (courses && courses.length > 0) { %>
+            <table>
+                <tr>
+                    <th>Course ID</th>
+                    <th>Course Name</th>
+                    <th>Credits</th>
+                </tr>
+                <% courses.forEach(course => { %>
+                    <tr>
+                        <td><%= course.course_id %></td>
+                        <td><%= course.course_name %></td>
+                        <td><%= course.credits %></td>
+                    </tr>
+                <% }); %>
+            </table>
+        <% } else { %>
+            <p>No courses in database</p>
+        <% } %>
+        
+        
+    </div>
+
+    </div>
     </main>
 
 <%- include("partials/footer.ejs") %>

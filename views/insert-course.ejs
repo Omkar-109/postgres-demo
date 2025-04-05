@@ -1,0 +1,18 @@
+<%- include("partials/header.ejs") %>
+
+<main class="enter-form">
+    <h1>Enter Course Details</h1>
+
+    <% if (error) { %>
+        <p style="color: red;"><%= error %></p>
+    <% } %>
+
+    <form class="form" action="/courses/addcourse" method="post">
+        <input class="mb-2 form-control" type="number" name="course_id" placeholder="Enter Course ID" required>
+        <input class="mb-2 form-control" type="text" name="course_name" placeholder="Enter Course Name" required>
+        <input class="mb-3 form-control" type="number" name="credits" placeholder="Enter Credits" required>
+        <input class="mb-1 btn btn-primary" type="submit" value="Add Course">
+    </form>
+</main>
+
+<%- include("partials/footer.ejs") %>

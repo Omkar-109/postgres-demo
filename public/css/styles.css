@@ -212,3 +212,23 @@ footer {
   animation: wave 20s -1s reverse infinite;
   opacity: 0.4;
 }
+
+.main-card {
+  display: flex;
+  flex-direction: row;
+}
+.list-card{
+  margin: 10px;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
+.list-card p {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.list-card table {
+  background-color: white;
+  margin: 5px;
+}

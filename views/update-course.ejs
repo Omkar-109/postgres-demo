@@ -1,0 +1,21 @@
+<%- include("partials/header.ejs") %>
+
+<main>
+    <h1>Update Course Details</h1>
+
+    <% if (error) { %>
+        <p style="color: red;"><%= error %></p>
+    <% } %>
+
+    <form class="form mb-2" action="/courses/editcourse" method="post">
+        <label>Search Course by ID</label>
+        <input class="mb-3 form-control" type="number" name="course_id" placeholder="Enter Course ID" required>
+        <input class="mb-1 form-control" type="text" name="old_course_name" placeholder="Enter old Course Name" required>
+        <input class="mb-1 form-control" type="text" name="new_course_name" placeholder="Enter New Course Name" required>
+        <input class="mb-3 form-control" type="number" name="new_credits" placeholder="Enter New Credits" required>
+
+        <input class="mb-1 btn btn-primary" type="submit" value="Update Course">
+    </form>
+</main>
+
+<%- include("partials/footer.ejs") %>

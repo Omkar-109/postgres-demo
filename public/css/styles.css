@@ -6,6 +6,14 @@
 #C63D2F 
 */
 
+*{
+  margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+  height: 100vh;
+}
 
 #header-section{
   margin: 10px;
@@ -218,6 +226,7 @@ footer {
   flex-direction: row;
 }
 .list-card{
+ 
   margin: 10px;
   padding: 5px;
   background-color: rgba(255, 255, 255, 0.5);
@@ -232,3 +241,10 @@ footer {
   background-color: white;
   margin: 5px;
 }
+
+@media (max-width: 1080px) {
+  .main-card {
+    flex-direction: column;
+  }
+}
+

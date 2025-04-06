@@ -1,0 +1,86 @@
+<%- include("partials/header.ejs") %>
+
+<main class="container mt-4">
+    <div class="main-card">
+      <div class="list-card">
+        <h3>Enroll Student in Course</h3>
+    
+      <% if (error) { %>
+        <p style="color: red;"><%= error %></p>
+      <% } %>
+    
+      <form class="form" action="/addenrollment" method="POST">
+        <label>Select Student:</label>
+        <select class="form-control mb-2 form-select" name="rollno" required>
+          <option value="" disabled selected>Select a student</option>
+          <% students.forEach(student => { %>
+            <option value="<%= student.rollno %>">
+              <%= student.rollno %> : <%= student.s_name %>
+            </option>
+          <% }); %>
+        </select>
+    
+        <label>Select Course:</label>
+    <select class="form-control mb-3 form-select" name="course_id" required>
+      <option value="" disabled selected>Select a course</option>
+      <% courses.forEach(course => { %>
+        <option value="<%= course.course_id %>">
+          <%= course.course_id %> : <%= course.course_name %>
+        </option>
+      <% }); %>
+    </select>
+    
+        <input class="btn btn-primary" type="submit" value="Enroll Student">
+      </form>
+    </div>
+    <div class="list-card">
+      <h3 class="mb-4">Students Enrolled in Courses</h3>
+  
+      <!-- Search Bar -->
+      <input id="searchInput" class="form-control mb-3" type="text" placeholder="Search by student or course...">
+  
+      <% if (data && data.length > 0) { %>
+          <table  id="enrollmentTable">
+              <thead >
+                  <tr>
+                      <th>Student Name</th>
+                      <th>Course Name</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <% data.forEach(row => { %>
+                      <tr>
+                          <td><%= row.s_name %></td>
+                          <td><%= row.course_name %></td>
+                      </tr>
+                  <% }) %>
+              </tbody>
+          </table>
+      <% } else { %>
+          <p>No enrollments found.</p>
+      <% } %>
+  </div>
+  
+
+</div>
+</main>
+
+<script>
+  document.getElementById("searchInput").addEventListener("keyup", function () {
+    const query = this.value.toLowerCase();
+    const rows = document.querySelectorAll("#enrollmentTable tbody tr");
+
+    rows.forEach(row => {
+      const studentName = row.cells[0].textContent.toLowerCase();
+      const courseName = row.cells[1].textContent.toLowerCase();
+
+      if (studentName.includes(query) || courseName.includes(query)) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+  });
+</script>
+
+<%- include("partials/footer.ejs") %>

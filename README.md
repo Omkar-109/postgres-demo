@@ -2,8 +2,7 @@
 Creating a simple website to test insert, update, select and delete queries in Postgres SQL. 
 
 ## Screenshot
-<img src="https://github.com/user-attachments/assets/4121de56-522b-4345-a7c7-6e009592dab5" height="400px">
+<img src="https://github.com/user-attachments/assets/a952ec5a-e113-475f-a2bb-c6c6842294cf" height="400px">
 
 ## Screen Recording
-https://github.com/user-attachments/assets/6c13b8f1-9afe-40ba-957a-f8e55817e4e2
-
+https://github.com/user-attachments/assets/89660a25-27c2-4672-966d-f2e0695617bf
